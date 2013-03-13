@@ -5,7 +5,7 @@ def address(xml, order, type)
   address = order.send("#{type}_address")
 
   xml.__send__(name) {
-    xml.Name       address.full_name
+    xml.Name       order.email
     xml.Company    address.company
 
     if type == :ship
