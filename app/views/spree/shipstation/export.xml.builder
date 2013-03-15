@@ -17,7 +17,7 @@ def address(xml, order, type)
       xml.Country    address.country.iso
     end
 
-    xml.Phone      ((address.phone.blank? or address.phone=="none") ? "424-272-5717" : address.phone )
+    xml.Phone      "424-272-5717"
   }
 end
 
