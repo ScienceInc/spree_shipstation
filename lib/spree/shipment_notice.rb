@@ -20,10 +20,11 @@ module Spree
 
     def update
       @shipment.update_attribute(:tracking, @tracking)
-      @shipment.reload.update_attribute(:state, 'shipped') unless @shipment.shipped?
-      @shipment.inventory_units.each &:ship!
-      @shipment.touch :shipped_at
-
+      unless @shipment.shipped?
+        @shipment.reload.update_attribute(:state, 'shipped')
+        @shipment.inventory_units.each &:ship!
+        @shipment.touch :shipped_at
+      end
       true
     end
 
